@@ -15,23 +15,22 @@
                       <div class="trip-number"></div>
                     </div>
                     <hr>
+                    <div class="section-title">Trip Summary</div>
                     <div class="row">
                       <div class="col-md-6">
                         <address>
-                          <strong>Billed To:</strong><br>
-                          Sarah Smith<br>
-                          6404 Cut Glass Ct,<br>
-                          Wendell,<br>
-                          NC, 27591, USA
+                          Vehicle Registration:<strong> {{trip.Vehicle}}</strong><br>
+                          <Route:strong> </strong><br>
+                          Date: <strong>{{trip.created}}</strong><br>
+                          
                         </address>
                       </div>
                       <div class="col-md-6 text-md-right">
                         <address>
-                          <strong>Shipped To:</strong><br>
-                          Keith Johnson<br>
-                          197 N 2000th E<br>
-                          Rexburg, ID,<br>
-                          Springfield Center, USA
+                          <strong>Conductor: {{trip.profile}}</strong><br>
+                          <strong>Driver:{{trip.created}} </strong><br>
+                         
+                         
                         </address>
                       </div>
                     </div>
@@ -45,8 +44,8 @@
                       </div>
                       <div class="col-md-6 text-md-right">
                         <address>
-                          <strong>Order Date:</strong><br>
-                          June 26, 2018<br><br>
+                          <strong>Trip Date:</strong><br>
+                          {{trip.created}}<br><br>
                         </address>
                       </div>
                     </div>
@@ -55,64 +54,66 @@
                 <div class="row mt-4">
                   <div class="col-md-12">
                     <div class="section-title">Trip Summary</div>
-                    <p class="section-lead">All items here cannot be deleted.</p>
+                    {% comment %} <p class="section-lead">All items here cannot be deleted.</p> {% endcomment %}
                     <div class="table-responsive">
                       <table class="table table-striped table-hover table-md">
                         <tr>
-                          <th data-width="40">#</th>
-                          <th>Item</th>
-                          <th class="text-center">Price</th>
-                          <th class="text-center">Quantity</th>
-                          <th class="text-right">Totals</th>
+                          {% comment %} <th data-width="40">Trip Record for {{trip.Vehicle}} on {{trip.created}}</th> {% endcomment %}
+                          <th class="text-center">#</th>
+                          <th class="text-center">Vehicle</th>
+                          <th class="text-center">Odometer Start</th>
+                          <th class="text-center">Odometer Close</th>
+                          {% comment %} <th class="text-center">Mileage</th> {% endcomment %}
+                          <th class="text-center">Journey From</th>
+                          <th class="text-center">Journey Destination</th>
+                          <th class="text-center">Amount Collected</th>
+                          <th class="text-center">Date </th>
+                          <th class="text-center">Created by </th>
+                          <th class="text-right"></th>
                         </tr>
+                        
                         <tr>
-                          <td>1</td>
-                          <td>Mouse Wireless</td>
-                          <td class="text-center">$10.99</td>
-                          <td class="text-center">1</td>
-                          <td class="text-right">$10.99</td>
+                          <td>{{trip.id}}</td>
+                          <td class="text-center">{{trip.Vehicle}}</td>
+                          <td class="text-center">{{trip.odometer_start}}</td>
+                          <td class="text-center">{{trip.odometer_close}}</td>
+                          {% comment %} <td class="text-center">{{trip.mileage}}</td> {% endcomment %}
+                          <td class="text-center">{{trip.journey_start}}</td>
+                          <td class="text-center">{{trip.journey_destination}}</td>
+                          <td class="text-center">{{trip.amount_collected}}</td>
+                          <td class="text-center">{{trip.created}}</td>
+                          <td class="text-center">{{trip.profile}}</td>
+                          
+                          
                         </tr>
-                        <tr>
-                          <td>2</td>
-                          <td>Keyboard Wireless</td>
-                          <td class="text-center">$20.00</td>
-                          <td class="text-center">3</td>
-                          <td class="text-right">$60.00</td>
-                        </tr>
-                        <tr>
-                          <td>3</td>
-                          <td>Headphone Blitz TDR-3000</td>
-                          <td class="text-center">$600.00</td>
-                          <td class="text-center">1</td>
-                          <td class="text-right">$600.00</td>
-                        </tr>
+                     
                       </table>
                     </div>
                     <div class="row mt-4">
                       <div class="col-lg-8">
-                        <div class="section-title">Payment Method</div>
-                        <p class="section-lead">The payment method that we provide is to make it easier for you to pay
-                          invoices.</p>
-                        <div class="images">
+                        <div class="section-title"></div>
+                        {% comment %} <p class="section-lead">The payment method that we provide is to make it easier for you to pay
+                          invoices.</p> {% endcomment %}
+                        {% comment %} <div class="images">
                           <img src="{% static 'assets/img/cards/visa.png'%}" alt="visa">
                           <img src="{% static 'assets/img/cards/jcb.png'%}" alt="jcb">
                           <img src="{% static 'assets/img/cards/mastercard.png'%}" alt="mastercard">
                           <img src="{% static 'assets/img/cards/paypal.png'%}" alt="paypal">
-                        </div>
+                        </div> {% endcomment %}
                       </div>
                       <div class="col-lg-4 text-right">
-                        <div class="invoice-detail-item">
-                          <div class="invoice-detail-name">Subtotal</div>
-                          <div class="invoice-detail-value">$670.99</div>
-                        </div>
-                        <div class="invoice-detail-item">
+                        {% comment %} <div class="invoice-detail-item">
+                          {% comment %} <div class="invoice-detail-name">Subtotal</div> {% endcomment %}
+                          {% comment %} <div class="invoice-detail-value">$670.99</div> 
+                        </div> {% endcomment %}
+                        {% comment %} <div class="invoice-detail-item">
                           <div class="invoice-detail-name">Shipping</div>
                           <div class="invoice-detail-value">$15</div>
-                        </div>
+                        </div> {% endcomment %}
                         <hr class="mt-2 mb-2">
                         <div class="invoice-detail-item">
                           <div class="invoice-detail-name">Total</div>
-                          <div class="invoice-detail-value invoice-detail-value-lg">$685.99</div>
+                          <div class="invoice-detail-value invoice-detail-value-lg">Ksh {{trip.amount_collected}}</div>
                         </div>
                       </div>
                     </div>
@@ -122,9 +123,9 @@
               <hr>
               <div class="text-md-right">
                 <div class="float-lg-left mb-lg-0 mb-3">
-                  <button class="btn btn-primary btn-icon icon-left"><i class="fas fa-credit-card"></i> Process
-                    Payment</button>
-                  <button class="btn btn-danger btn-icon icon-left"><i class="fas fa-times"></i> Cancel</button>
+                  <button class="btn btn-info btn-icon icon-left"><i class="fas fa-credit-card"></i> Back
+                    </button>
+                  <button class="btn btn-danger btn-icon icon-left"><i class="fas fa-times"></i> </button>
                 </div>
                 <button class="btn btn-warning btn-icon icon-left"><i class="fas fa-print"></i> Print</button>
               </div>

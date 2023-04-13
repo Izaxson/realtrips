@@ -15,38 +15,55 @@
         <a href="#" class="menu-toggle nav-link has-dropdown"><i
             data-feather="briefcase"></i><span> Trips</span></a>
         <ul class="dropdown-menu">
-          <li><a class="nav-link" href="{% url 'trips' %}">My Trips</a></li>
-           <li><a class="nav-link" href="{% url 'addtrip' %}">Add Trip </a></li> 
+          <li><a class="nav-link" href="{% url 'trips' %}"><i data-feather="map"></i>My Trips</a></li>
+           <li><a class="nav-link" href="{% url 'addtrip' %}"><i data-feather="slack"></i>Add Trip </a></li> 
         </ul> 
       </li>
       <li class="dropdown">
-        <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="command"></i><span>Expenses</span></a>
+        <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="zap"></i><span>Expenses</span></a>
          <ul class="dropdown-menu">
 
-          <li><a class="nav-link" href="{% url 'expense' %}">My Expenses</a></li>
-          <li><a class="nav-link" href="{% url 'addexpense' %}">Add Expense </a></li>
+          <li><a class="nav-link" href="{% url 'expense' %}"><i data-feather="dollar-sign"></i>My Expenses</a></li>
+          <li><a class="nav-link" href="{% url 'addexpense' %}"><i data-feather="calendar"></i>Add Expense </a></li>
           {% comment %} <li><a class="nav-link" href="portfolio.html">This Week</a></li>
           <li><a class="nav-link" href="blog.html">This Month</a></li>
           <li><a class="nav-link" href="calendar.html">This Year</a></li> {% endcomment %}
         </ul>
       </li>
       <li class="dropdown">
-        <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="bar-chart-2"></i><span>Reports</span></a>
+        <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="bar-chart"></i><span>Reports</span></a>
         <ul class="dropdown-menu">
-          <li><a class="nav-link" href="email-read.html"><i data-feather="calendar"></i>All</a></li> 
-          <li><a class="nav-link" href="email-inbox.html"><i data-feather="file"></i>Trip</a></li>
-          <li><a class="nav-link" href="email-compose.html"><i data-feather="credit-card"></i>Expense</a></li>
+          <li><a class="nav-link" href="{% url 'revenue_report' %}"><i data-feather="pie-chart"></i>Revenue Report</a></li> 
+          <li><a class="nav-link" href="email-inbox.html"><i data-feather="calendar"></i>Trip</a></li>
+          <li><a class="nav-link" href="{% url 'report-expense' %}"><i data-feather="calendar"></i>Expense</a></li>
          
         </ul>
       </li>
-      {% comment %} <li class="dropdown">
-        <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="mail"></i><span>Email</span></a>
+      <li class="dropdown">
+        <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="user"></i><span>Vehicle Management</span></a>
         <ul class="dropdown-menu">
-          <li><a class="nav-link" href="email-inbox.html">Inbox</a></li>
-          <li><a class="nav-link" href="email-compose.html">Compose</a></li>
-          <li><a class="nav-link" href="email-read.html">read</a></li>
+          <li><a class="nav-link" href="email-inbox.html"><i data-feather="user-check"></i>User</a></li>
+          <li><a class="nav-link" href="email-compose.html"><i data-feather="user-plus"></i>Roles</a></li>
+          <li><a class="nav-link" href="email-read.html"> <i data-feather="users"></i>Permissions</a></li>
         </ul>
-      </li> {% endcomment %}
+      </li>
+     
+      <li class="dropdown">
+        <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="user"></i><span>Route</span></a>
+        <ul class="dropdown-menu">
+          <li><a class="nav-link" href="email-inbox.html"><i data-feather="user-check"></i>Add</a></li>
+          <li><a class="nav-link" href="email-compose.html"><i data-feather="user-plus"></i>Roles</a></li>
+          <li><a class="nav-link" href="email-read.html"> <i data-feather="users"></i>Permissions</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="user"></i><span>User Management</span></a>
+        <ul class="dropdown-menu">
+          <li><a class="nav-link" href="email-inbox.html"><i data-feather="user-check"></i>Profile</a></li>
+          <li><a class="nav-link" href="email-compose.html"><i data-feather="user-plus"></i>User</a></li>
+          <li><a class="nav-link" href="email-read.html"> <i data-feather="users"></i>#</a></li>
+        </ul>
+      </li> 
      
       </li>
     </ul>

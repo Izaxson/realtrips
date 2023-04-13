@@ -3,19 +3,59 @@ from django.contrib.auth.models import User
 from django.db.models import Sum
 from django.utils import timezone
 
-class Vehicle(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    vehicle_reg_no = models.CharField(max_length=150)
-    created = models.DateTimeField(default=timezone.now)
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    # id_no = models.IntegerField(max_length=8)
+    # profile_picture = models.ImageField(upload_to=('images/Profile_pictures'))
+    company = models.ForeignKey('Company', on_delete=models.CASCADE, related_name='company')
+    def __str__(self):
+        return f'{self.user}'
     
+class Company(models.Model):
+    profile = models.OneToOneField(Profile, on_delete=models.CASCADE, related_name='profile',null=True)
+    name = models.CharField(max_length=150)
+    address = models.CharField(max_length=150)
+    location = models.CharField(max_length=150)
+    created = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.name
+
+        
+class Vehicle(models.Model):
+    profile = models.OneToOneField(Profile, on_delete=models.PROTECT,related_name='profilevehicle')
+    vehicle_reg_no = models.CharField(max_length=150)
+    created = models.DateTimeField(auto_now_add=True)
+    company=models.ForeignKey(Company,on_delete=models.CASCADE,related_name='vehicle',blank=True,null=True)
+    
+    def __str__(self):
+       return f'{self.vehicle_reg_no}'
+    
+class Driver(models.Model):
+    vehicle = models.OneToOneField(Vehicle, on_delete=models.PROTECT)
+    name = models.CharField(max_length=150)
+    created = models.DateTimeField(auto_now_add=True)  
+    company=models.ForeignKey(Company,on_delete=models.PROTECT,related_name='driver')
+    def __str__(self):
+     return f'{self.name}' 
+    
+class Route(models.Model):
+    route_Choices = (
+            ('Nairobi-Thika', 'Nairobi-Thika'),
+            ('Nairobi-Malaa', 'Nairobi-Malaa'),
+            ('Nairobi-Makongeni', 'Nairobi-Makongeni'),
+            
+     )
+    vehicle = models.OneToOneField(Vehicle, on_delete=models.PROTECT)
+    name = models.CharField(max_length=100, choices=route_Choices)
+    created = models.DateTimeField(auto_now_add=True)
     
     
     def __str__(self):
-        return self.vehicle_reg_no
+         return f'{self.vehicle} asssigned to  {self.name} route' 
+    
 
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    vehicle = models.OneToOneField(Vehicle, on_delete=models.CASCADE)
 
 class Trip(models.Model):
     journey_Choices = (
@@ -25,14 +65,15 @@ class Trip(models.Model):
             ('Makongeni', 'Makongeni'),
             
      )
-    Vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
+    Vehicle = models.ForeignKey(Vehicle, on_delete=models.PROTECT)
     odometer_start=models.PositiveIntegerField()
     odometer_close=models.PositiveIntegerField()
     journey_start=models.CharField(max_length=100, choices=journey_Choices) 
     journey_destination=models.CharField(max_length=100, choices=journey_Choices) 
     amount_collected=models.PositiveIntegerField()
-    created = models.DateTimeField(default=timezone.now)
-    # created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user')
+    created = models.DateField(auto_now_add=True)
+    # user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='trips')
+    profile = models.ForeignKey(Profile, on_delete=models.PROTECT)
     
     class Meta:
         ordering = ('-created',) 
@@ -40,8 +81,8 @@ class Trip(models.Model):
         return f'Trip for {self.Vehicle.vehicle_reg_no}'
     
 
-    def total_amount_collected(self):
-     return Trip.objects.aggregate(Sum('amount_collected'))['amount_collected__sum']    
+    # def total_amount_collected(self):
+    #  return Trip.objects.aggregate(Sum('amount_collected'))['amount_collected__sum']    
         #  return Trip.objects.filter(Vehicle=self.Vehicle).aggregate(Sum('amount_collected'))['amount_collected__sum']
         # return Trip.objects.filter(Vehicle=self.Vehicle, Vehicle__owner=request.user).aggregate(Sum('amount_collected'))['amount_collected__sum']
 
@@ -71,17 +112,18 @@ class Expense(models.Model):
             ('Others', 'Others'),
         )   
      
-    Vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
+    Vehicle = models.ForeignKey(Vehicle, on_delete=models.PROTECT)
     name = models.CharField(max_length=100, choices=Expense_Choices) 
     amount_incurred=models.PositiveIntegerField()
-    created = models.DateTimeField(default=timezone.now)
-    # created_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)
+    # user = models.ForeignKey(User, on_delete=models.CASCADE,related_name='trips')
+    profile = models.ForeignKey(Profile, on_delete=models.PROTECT)
     # user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     
+    class Meta:
+        ordering = ('-created',)
 
-    def total_expense_incurred(self):
-        return Expense.objects.aggregate(Sum('amount_incurred'))['amount_incurred__sum'] 
-
+            
     def __str__(self):
         return f'Expense for {self.Vehicle.vehicle_reg_no}'
     

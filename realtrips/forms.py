@@ -9,7 +9,7 @@ class TripAddForm(forms.ModelForm):
     class Meta:
         model = Trip
         fields = ['Vehicle', 'odometer_start', 'odometer_close',
-                'journey_start','journey_destination','amount_collected','created']
+                'journey_start','journey_destination','amount_collected','profile']
         labels = {
             'Vehicle': 'Vehicle',
             'odometer_start': 'odometer start',
@@ -33,14 +33,14 @@ class TripAddForm(forms.ModelForm):
             'journey_start',
             'journey_destination',
             'amount_collected',
-            # 'created_by',
+            
         )
-
+    
 class EditTripForm(TripAddForm):
     class Meta:
         model = Trip
         fields = ['Vehicle', 'odometer_start', 'odometer_close',
-                'journey_start','journey_destination','amount_collected','created']
+                'journey_start','journey_destination','amount_collected']
         labels = {
             'Vehicle': 'Vehicle',
             'odometer_start': 'odometer start',
@@ -49,7 +49,7 @@ class EditTripForm(TripAddForm):
             'journey_destination': 'journey destination',
             'amount_collected': 'amount collected',
             'journey_start': 'journey_start',
-            # 'created_by': 'created_by'
+            
         }
 
     def __init__(self, *args, **kwargs):
@@ -64,20 +64,21 @@ class EditTripForm(TripAddForm):
             'journey_start',
             'journey_destination',
             'amount_collected',
-            # 'created_by',
+           
         )
 
 
 class ExpenseAddForm(forms.ModelForm):
     class Meta:
         model = Expense
-        fields = ['Vehicle', 'name', 'amount_incurred',
-                'created']
+        fields = ['Vehicle', 'name', 'amount_incurred','profile'
+               ]
         labels = {
             'Vehicle': 'Vehicle',
             'name': 'Expense',
             'amount_incurred': 'Amount Incurred',
-            # 'created': 'Date',
+            'profile':'Profile',
+           
             
         }
 
@@ -90,7 +91,7 @@ class ExpenseAddForm(forms.ModelForm):
             'Vehicle',
             'name',
             'amount_incurred',
-            # 'created',
+          
             
         )
 
@@ -103,7 +104,7 @@ class ExpenseEditForm(ExpenseAddForm):
             'Vehicle': 'Vehicle',
             'name': 'Expense',
             'amount_incurred': 'Amount Incurred',
-            # 'created': 'Date',
+         
             
         }
 
@@ -116,7 +117,7 @@ class ExpenseEditForm(ExpenseAddForm):
             'Vehicle',
             'name',
             'amount_incurred',
-            # 'created',
+         
             
         )        
 

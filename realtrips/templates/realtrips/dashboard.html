@@ -8,25 +8,200 @@
         <section class="section">
           <div class="section-body">
             
+           
+            <div class="row ">
+              <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="card">
+                  <div class="card-statistic-4">
+                    <div class="align-items-center justify-content-between">
+                      <div class="row ">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
+                          <div class="card-content">
+                            <h5 class="font-15">Total Trips</h5>
+                            <h2 class="mb-3 font-18">{{trip_count}}</h2>
+                            {% comment %} <p class="mb-0"><span class="col-green">10%</span> Increase</p> {% endcomment %}
+                          </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
+                          <div class="banner-img">
+                            <img src="{% static 'assets/img/trips.svg'%}" alt="">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+           
+              
+              <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="card">
+                  <div class="card-statistic-4">
+                    <div class="align-items-center justify-content-between">
+                      <div class="row ">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
+                          <div class="card-content">
+                            <h5 class="font-15">Revenue</h5>
+                            <h2 class="mb-3 font-18"> Ksh. {{total_amount_collected}}</h2>
+                            {% comment %} <p class="mb-0"><span class="col-green">42%</span> Net Earnings</p> {% endcomment %}
+                          </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
+                          <div class="banner-img">
+                            <img src="{% static 'assets/img/target.svg'%}" alt="">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="card">
+                  <div class="card-statistic-4">
+                    <div class="align-items-center justify-content-between">
+                      <div class="row ">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
+                          <div class="card-content">
+                            <h5 class="font-15">Expense </h5>
+                            <h2 class="mb-3 font-18">Ksh. {{total_expense_incurred}}</h2>
+                            {% comment %} <p class="mb-0"><span class="col-green">18%</span> {% endcomment %}
+                              </p>
+                          </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
+                          <div class="banner-img">
+                            <img src="{% static 'assets/img/expenses.svg' %}" alt="">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                 <div class="card">
+                  <div class="card-statistic-4">
+                    <div class="align-items-center justify-content-between">
+                      <div class="row ">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
+                          <div class="card-content">
+                            <h5 class="font-15"> Net Earnings</h5>
+                            <h2 class="mb-3 font-18"> Ksh.{{net_revenue}}</h2>
+                            {% comment %} <p class="mb-0"><span class="col-orange">09%</span> Decrease</p> {% endcomment %}
+                          </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
+                          <div class="banner-img">
+                            <img src="{% static 'assets/img/lead.svg'%}" alt="">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div> 
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+              <div class="card">
+                <div class="card-statistic-4">
+                  <div class="align-items-center justify-content-between">
+                    <div class="row ">
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
+                        <div class="card-content">
+                          <h5 class="font-15">Total Mileage</h5>
+                          <h2 class="mb-3 font-18">{{ mileage.mileage }}</h2>
+                          {% comment %} <p class="mb-0"><span class="col-green">10%</span> Increase</p> {% endcomment %}
+                        </div>
+                      </div>
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
+                        <div class="banner-img">
+                          <img src="{% static 'assets/img/mileage.svg'%}" alt="">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {% comment %} <div class="row">
+              <div class="col-lg-4 col-md-4 col-sm-12">
+                <div class="card card-statistic-2">
+                  <div class="card-icon shadow-primary bg-cyan">
+                    <i class="fas fa-bus"></i>
+                  </div>
+                  <div class="card-wrap">
+                    <div class="card-header">
+                      <h4 class="pull-right">Total Revenue</h4>
+                    </div>
+                    <div class="card-body pull-right">
+                      Ksh. {{total_amount_collected}}
+                    </div>
+                  </div>
+                  <div class="card-chart">
+                    <canvas id="chart-1" height="80"></canvas>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-12">
+                <div class="card card-statistic-2">
+                  <div class="card-icon shadow-primary bg-purple">
+                    <i class="
+                    fas fa-car-crash"></i>
+                  </div>
+                  <div class="card-wrap">
+                    <div class="card-header">
+                      <h4 class="pull-right">Total Expenses</h4>
+                    </div>
+                    <div class="card-body pull-right">
+                      Ksh. {{total_expense_incurred}}
+                    </div>
+                  </div>
+                  <div class="card-chart">
+                    <canvas id="chart-2" height="80"></canvas>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-12">
+                <div class="card card-statistic-2">
+                  <div class="card-icon shadow-primary bg-green">
+                    <i class="fas fa-dollar-sign"></i>
+                  </div>
+                  <div class="card-wrap">
+                    <div class="card-header">
+                      <h4 class="pull-right">Net Total Earning</h4>
+                    </div>
+                    <div class="card-body pull-right">
+                      Ksh.{{net_revenue}}
+                    </div>
+                  </div>
+                  <div class="card-chart">
+                    <canvas id="chart-3" height="80"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div> {% endcomment %}
+
             <div class="row">
               <div class="col-xl-8 col-md-12 col-lg-8">
                 <div class="card">
                   <div class="card-header">
-                    <h4>Revenue Chart</h4>
+                    <h4>Revenue Report</h4>
                   </div>
                   <div class="card-body">
                     <ul class="list-inline text-center">
                       <li class="list-inline-item p-r-30"><i data-feather="arrow-up-circle" class="col-green"></i>
-                        <h5 class="m-b-0">$675</h5>
-                        <p class="text-muted font-14 m-b-0">Weekly Earnings</p>
+                        <h5 class="m-b-0">Ksh. {{total_amount_collected}}</h5>
+                        <p class="text-muted font-14 m-b-0">Total Earnings</p>
                       </li>
                       <li class="list-inline-item p-r-30"><i data-feather="arrow-down-circle" class="col-orange"></i>
-                        <h5 class="m-b-0">$1,587</h5>
-                        <p class="text-muted font-14 m-b-0">Monthly Earnings</p>
+                        <h5 class="m-b-0">Ksh. {{total_expense_incurred}}</h5>
+                        <p class="text-muted font-14 m-b-0">Expenses </p>
                       </li>
                       <li class="list-inline-item p-r-30"><i data-feather="arrow-up-circle" class="col-green"></i>
-                        <h5 class="mb-0 m-b-0">$45,965</h5>
-                        <p class="text-muted font-14 m-b-0">Yearly Earnings</p>
+                        <h5 class="mb-0 m-b-0">Ksh.{{net_revenue}}</h5>
+                        <p class="text-muted font-14 m-b-0">Net Revenue</p>
                       </li>
                     </ul>
                     <div id="revenue"></div>
@@ -72,65 +247,8 @@
                 </div>
               </div>
             </div>
-            
             <div class="row">
-              <div class="col-lg-4 col-md-4 col-sm-12">
-                <div class="card card-statistic-2">
-                  <div class="card-icon shadow-primary bg-cyan">
-                    <i class="fas fa-hiking"></i>
-                  </div>
-                  <div class="card-wrap">
-                    <div class="card-header">
-                      <h4 class="pull-right">New Clients</h4>
-                    </div>
-                    <div class="card-body pull-right">
-                      10,225
-                    </div>
-                  </div>
-                  <div class="card-chart">
-                    <canvas id="chart-1" height="80"></canvas>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-4 col-sm-12">
-                <div class="card card-statistic-2">
-                  <div class="card-icon shadow-primary bg-purple">
-                    <i class="fas fa-drafting-compass"></i>
-                  </div>
-                  <div class="card-wrap">
-                    <div class="card-header">
-                      <h4 class="pull-right">Delivered Order</h4>
-                    </div>
-                    <div class="card-body pull-right">
-                      2,857
-                    </div>
-                  </div>
-                  <div class="card-chart">
-                    <canvas id="chart-2" height="80"></canvas>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-4 col-sm-12">
-                <div class="card card-statistic-2">
-                  <div class="card-icon shadow-primary bg-green">
-                    <i class="fas fa-dollar-sign"></i>
-                  </div>
-                  <div class="card-wrap">
-                    <div class="card-header">
-                      <h4 class="pull-right">Total Earning</h4>
-                    </div>
-                    <div class="card-body pull-right">
-                      $17,458
-                    </div>
-                  </div>
-                  <div class="card-chart">
-                    <canvas id="chart-3" height="80"></canvas>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12 col-sm-12 col-lg-6">
+              {% comment %} <div class="col-12 col-sm-12 col-lg-6">
                 <div class="card">
                   <div class="card-header">
                     <h4>Visitors</h4>
@@ -164,7 +282,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="card mt-4">
+                {% comment %} <div class="card mt-4">
                   <div class="card-body">
                     <div class="row">
                       <div class="col-sm-3 col-6 mb-md-0 mb-4 text-center">
@@ -191,14 +309,14 @@
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div class="col-12 col-sm-12 col-lg-6 mt-lg-0 mt-sm-4">
-                <div class="card">
-                  <div class="card-header">
+                </div> 
+                </div>{% endcomment %}
+                {% comment %} <div class="col-12 col-sm-12 col-lg-6 mt-lg-0 mt-sm-4">
+                  <div class="card"> {% endcomment %}
+                    {% comment %} <div class="card-header">
                     <h4>Referral URL</h4>
-                  </div>
-                  <div class="card-body">
+                  </div> {% endcomment %}
+                  {% comment %} <div class="card-body">
                     <canvas id="myChart3" height="170"></canvas>
                     <div class="mb-4 mt-4">
                       <div class="text-small float-right font-weight-bold text-muted">558</div>
@@ -228,11 +346,11 @@
                         <div class="progress-bar bg-cyan" data-width="22%"></div>
                       </div>
                     </div>
-                  </div>
+                  </div> 
                 </div>
-              </div>
+              </div> {% endcomment %}
             </div>
-            <div class="row">
+            {% comment %} <div class="row">
               <div class="col-lg-6 col-md-12 col-12 col-sm-12">
                 <div class="card mt-sm-5 mt-md-0">
                   <div class="card-header">
@@ -377,7 +495,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> {% endcomment %}
       </div>
   
     </div>

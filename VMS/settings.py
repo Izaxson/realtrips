@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'realtrips',
     'crispy_forms',
+    'widget_tweaks',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -205,14 +207,14 @@ JAZZMIN_SETTINGS = {
     # Whether to display the side menu
     "show_sidebar": True,
 
-    # Whether to aut expand the menu
+    # Whether to auto expand the menu
     "navigation_expanded": True,
 
     # Hide these apps when generating side menu e.g (auth)
     "hide_apps": [],
 
     # Hide these models when generating side menu (e.g auth.user)
-    "hide_models": [],
+    "hide_models": ['User'],
 
     # List of apps (and/or models) to base side menu ordering off of (does not need to contain all apps/models)
     "order_with_respect_to": ["auth", "books", "books.author", "books.book"],
@@ -234,7 +236,10 @@ JAZZMIN_SETTINGS = {
         "auth.user": "fas fa-user",
         "auth.Group": "fas fa-users",
         "realtrips.Expense":"fas fa-coins",
+        "realtrips.company":"fas fa-building",
+        "realtrips.Driver":"fas fa-user",
         "realtrips.Route":"fas fa-route",
+        "realtrips.Profile":"fas fa-user",
         "realtrips.Vehicle":"fas fa-bus",
         "realtrips.Trip":"fas fa-bolt",
         
