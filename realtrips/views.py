@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
-from realtrips.models import Expense, Trip
+from realtrips.models import Expense, Trip,Driver
 from django.views.generic import ListView  ,DetailView , CreateView ,FormView ,UpdateView
 from django.db.models import Sum
 from django.contrib import messages
@@ -9,11 +9,7 @@ from .forms import  ExpenseEditForm, TripAddForm ,ExpenseAddForm ,EditTripForm
 from django.contrib.auth.decorators import login_required, permission_required
 
 
-# def addtrip(request):
-#     form = TripForm()
-#     # trip_total_collection= Trip.objects.aggregate(Sum('amount_collected'))['amount_collected__sum']
-#     context = {'form': form}
-#     return render(request, 'realtrips/addtrip.html', context)
+
 
 
 class TripListView(ListView):
@@ -75,7 +71,7 @@ class ExpenseListView(ListView):
 
 class TripAddView(FormView):
     template_name = 'realtrips/addtrip.html'
-    form_class = TripAddForm  # corrected
+    form_class = TripAddForm  
     success_url = reverse_lazy('trips')
 
     def form_valid(self, form):
@@ -108,20 +104,15 @@ class TripDetailView(DetailView):
     template_name = 'realtrips/viewtrip.html'
     success_url = reverse_lazy('viewtrip')
 
-
-
     def get_queryset(self):
         # Return a queryset of all Trip objects
         return Trip.objects.all()
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-
-        # Calculate mileage for each trip
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context['mileage'] = Trip.objects.aggregate(mileage=Sum('odometer_close') - Sum('odometer_start'))
-
-    #     return context
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # driver = Driver.objects.get(vehicle__vehicle_reg_no='vehicle_reg_no')
+        # driver_name = driver.name
+        # context['driver'] = driver
+        return context
 class RevenueListView(ListView):
     template_name = 'realtrips/revenue_report.html'
     # template_name = 'realtrips/expense_report.html'

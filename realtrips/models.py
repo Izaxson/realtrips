@@ -24,7 +24,7 @@ class Company(models.Model):
 
         
 class Vehicle(models.Model):
-    profile = models.OneToOneField(Profile, on_delete=models.PROTECT,related_name='profilevehicle')
+    profile = models.OneToOneField(Profile,blank=True, null=True, on_delete=models.PROTECT,related_name='profilevehicle')
     vehicle_reg_no = models.CharField(max_length=150)
     created = models.DateTimeField(auto_now_add=True)
     company=models.ForeignKey(Company,on_delete=models.CASCADE,related_name='vehicle',blank=True,null=True)
@@ -33,7 +33,7 @@ class Vehicle(models.Model):
        return f'{self.vehicle_reg_no}'
     
 class Driver(models.Model):
-    vehicle = models.OneToOneField(Vehicle, on_delete=models.PROTECT)
+    vehicle = models.OneToOneField(Vehicle,blank=True, null=True, on_delete=models.PROTECT)
     name = models.CharField(max_length=150)
     created = models.DateTimeField(auto_now_add=True)  
     company=models.ForeignKey(Company,on_delete=models.PROTECT,related_name='driver')
@@ -47,7 +47,7 @@ class Route(models.Model):
             ('Nairobi-Makongeni', 'Nairobi-Makongeni'),
             
      )
-    vehicle = models.OneToOneField(Vehicle, on_delete=models.PROTECT)
+    vehicle = models.OneToOneField(Vehicle, blank=True, null=True, on_delete=models.PROTECT)
     name = models.CharField(max_length=100, choices=route_Choices)
     created = models.DateTimeField(auto_now_add=True)
     

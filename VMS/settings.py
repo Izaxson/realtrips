@@ -32,7 +32,6 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'jazzmin',
-    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,6 +42,10 @@ INSTALLED_APPS = [
     'crispy_forms',
     'widget_tweaks',
     'accounts',
+    'bootstrap4',
+    'django_filters',
+    
+    
 ]
 
 MIDDLEWARE = [

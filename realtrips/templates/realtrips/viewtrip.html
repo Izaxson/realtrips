@@ -27,8 +27,8 @@
                       </div>
                       <div class="col-md-6 text-md-right">
                         <address>
-                          <strong>Conductor: {{trip.profile}}</strong><br>
-                          <strong>Driver:{{trip.created}} </strong><br>
+                          <strong>Conductor Name: {{trip.profile}}</strong><br>
+                          <strong>Driver Name:{{trip.vehicle.driver.name}} </strong><br>
                          
                          
                         </address>
@@ -122,13 +122,12 @@
               </div>
               <hr>
               <div class="text-md-right">
-                <div class="float-lg-left mb-lg-0 mb-3">
-                  <button class="btn btn-info btn-icon icon-left"><i class="fas fa-credit-card"></i> Back
+                
+             <a href="{% url 'trips' %}" button class="btn btn-info btn-icon icon-left"><i class="fas fa-credit-card"></i> Back
                     </button>
-                  <button class="btn btn-danger btn-icon icon-left"><i class="fas fa-times"></i> </button>
-                </div>
-                <button class="btn btn-warning btn-icon icon-left"><i class="fas fa-print"></i> Print</button>
-              </div>
+                  
+                
+           
             </div>
           </div>
         </section>

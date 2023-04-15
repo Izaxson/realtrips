@@ -1,7 +1,7 @@
 {% extends "realtrips/base2.html" %}
 {% comment %} {% load static%} {% endcomment %}
 {%block content%}
-
+{%load static%}
   {% comment %} <div class="loader"></div>
   <div id="app"> {% endcomment %}
 
@@ -15,13 +15,13 @@
             <div class="card card-primary">
               <div class="row m-0">
              
-                {% comment %} <div class="col-12 col-md-12 col-lg-7 p-0" mt-20px >
-                  <div class="card-header text-right">
-                    <h4> Real Trips| Every trip counts</h4>
-                     {% comment %} <img src="{% static "assets/img/Realtripslogo.jpg" height=190,width=50 alt="logo" %}"> 
-                  </div>
+               <div class="col-8 col-md-12 col-lg-6 p-0" mt-20px >
+              
+                  {% comment %} <h4> Real Trips| Every trip counts</h4> {% endcomment %}
+                 <img src="{% static "assets/img/logo2.jpg" class='image-rounded'  %}"> 
+               
                  
-                </div> {% endcomment %}
+                </div>
                 <div class="col-12 col-md-12 col-lg-5 p-0">
                  
                 
