@@ -1,5 +1,6 @@
 {% extends "realtrips/base.html" %}
 {% load static%}
+{%load crispy_forms_tags %} 
 {%block content%}
       <!-- Main Content -->
       <div class="container">
@@ -16,7 +17,7 @@
                       <div class="trip-number"></div>
                     </div>
                     <hr>
-                    <div class="section-title">Revenue Report</div>
+                    {% comment %} <div class="section-title">Revenue Report</div> {% endcomment %}
                     {% comment %} <div class="row">
                       <div class="col-md-6">
                         <address>
@@ -35,20 +36,38 @@
                         </address>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col-md-6">
+                    <div class="card-body">
+              
+                      <div class="card-header" align='right'>
+                        
+                        <a href="#" class="btn btn-icon icon-left btn-success"><i class="fas fa-check"></i> Revenue Report</a>
+                      </div>
+                      <div class="card-header" align='left'>
+                        
+                        <h4>SEARCH/ FILTER EXPENSE </h4><br>
+                        <form method="GET" >
+                          {{ filter.form|crispy}}
+                          <button type="submit" name='q' class= "btn btn btn-success">Search </button>
+                      </form>
+                      </div>
+                      <div class="card-body">  
+                       
+                          
+                      </div> 
+                    </DIV> <div class="row">
+                      {% comment %} <div class="col-md-6">
                         <address>
                           <strong>Payment Method:</strong><br>
                           Visa ending **** 5687<br>
                           test@example.com
                         </address>
-                      </div>
-                      <div class="col-md-6 text-md-right">
+                      </div> {% endcomment %}
+                      {% comment %} <div class="col-md-6 text-md-right">
                         <address>
                           <strong>Report Date:</strong><br>
                           <br><br>
                         </address>
-                      </div>
+                      </div> {% endcomment %}
                     </div>
                   </div>
                 </div>
@@ -64,6 +83,7 @@
                           <th class="text-center">Vehicle</th>
                           <th class="text-center">Odometer Start</th>
                           <th class="text-center">Odometer Close</th>
+                          <th class="text-center">Mileage</th>
                           <th class="text-center">Journey From</th>
                           <th class="text-center">Journey Destination</th>
                           <th class="text-center">Amount Collected</th>
@@ -78,10 +98,11 @@
                           <td class="text-center">{{trip.Vehicle}}</td>
                           <td class="text-center">{{trip.odometer_start}}</td>
                           <td class="text-center">{{trip.odometer_close}}</td>
+                          <td class="text-center">{{trip.mileage}}</td>
                           <td class="text-center">{{trip.journey_start}}</td>
                           <td class="text-center">{{trip.journey_destination}}</td>
                           <td class="text-center">{{trip.amount_collected}}</td>
-                          <td class="text-center">{{trip.created}}</td>
+                          <td>{{trip.created|date:"d-m-Y"}}</td>
                           <td class="text-center">{{trip.profile}}</td>
                           
                         </tr>

@@ -1,7 +1,8 @@
 {% extends "realtrips/base.html" %}
 {% load static%}
+{% load crispy_forms_tags %}
 
-{%load crispy_forms_tags %} 
+{% comment %} {%load crispy_forms_tags %}  {% endcomment %}
 {%block content%}
   
 <div class="main-content">
@@ -9,20 +10,20 @@
       <div class="section-body">
         <div class="row">
         
-          <div class="col-12 col-md-6 col-lg-6">
-            <div class="card">
+          <div class="col-6 col-md-6 col-lg-6">
+           
               <form action="{% url 'addexpense' %}" method="POST">
                 {% csrf_token %}
                 <div class="card-header">
                   <h4>Add Expense </h4>
                 </div>
-                {{form.as_p }}
+                {{form|crispy}} 
             
                 <div class="card-footer text-right">
-                  <button class="btn btn-primary">Submit</button>
+                  <button class="btn btn-success">Submit</button>
                 </div>
               </form>
-            </div>
+         
             
           </div>
         </div>

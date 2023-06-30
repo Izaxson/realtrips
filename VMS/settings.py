@@ -31,19 +31,19 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'jazzmin',
+     'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #custom
     'realtrips',
     'crispy_forms',
-    'widget_tweaks',
     'accounts',
-    'bootstrap4',
     'django_filters',
+    # 'widget_tweaks'
     
     
 ]
@@ -130,6 +130,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 

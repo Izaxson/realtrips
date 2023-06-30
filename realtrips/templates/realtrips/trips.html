@@ -1,9 +1,11 @@
 {% extends "realtrips/base.html" %}
 {% load static%}
+{%load crispy_forms_tags %} 
 <link rel="stylesheet" href="{% static "assets/css/custom.css" %}%">
 <link rel='shortcut icon' type='image/x-icon' href='{% static "assets/img/favicon.ico' /> 
 <link rel="stylesheet" href="{% static "assets/bundles/izitoast/css/iziToast.min.css" %}">
 {%block content%}
+
   <!-- Main Content -->
     <main><!--  #main -->
      
@@ -12,17 +14,39 @@
       <div class="row">
         <div class="col-12">
           <div class="card">
-            <div class="card-header" align='right'>
-              <a href="{% url 'addtrip' %}" class="btn btn-icon icon-left btn-success"><i class="fas fa-check"></i> Add New Trip</a>
+            <div class="card-header" align='justify-left'>
+              <a href="{% url 'addtrip' %}" class="btn btn-icon icon-right btn-success"><i class="fas fa-check"></i> Add New Trip</a>
             </div>
-            <div class="input-group">
-              <div id="search-autocomplete" class="form-outline">
-                <input type="search" id="form1" class="form-control" />
-                <label class="form-label" for="form1">Search</label>
-              </div>
-              <button type="button" class="btn btn-primary ">
+
+            <div class="card-body" col-md-6>  
+              <h4>SEARCH/ FILTER TRIPS </h4>
+                <form method="GET" >
+                  {{ filter.form|crispy}}
+                  <button type="submit" name='q' class= "btn btn btn-success">Search </button>
+              </form>
+            </div>  
+           
+            
+          
+            {% if messages %}
+            <div class="alert alert" role="alert">
+              
+                  {% for message in messages %}
+                      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                  {% endfor %}
+           
+             </div>
+            {% endif %}
+            <div class="card-header" >
+              <form method="post" class="my-class">
+                {{ form|crispy}}
+            </form>
+
+            </div>
+            
+              {% comment %} <button type="button" class="btn btn-primary ">
                 <i class="fas fa-search"></i>
-              </button>
+              </button> {% endcomment %}
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -57,7 +81,8 @@
                       <td>{{trip.journey_destination}}</td>
                       <td>{{trip.amount_collected}}</td>
                      
-                      <td>{{trip.created}}</td>
+                      <td>{{trip.created|date:"d-m-Y"}}</td>
+                      
                      
                      
                       <td>
@@ -75,8 +100,11 @@
                       
                     </tr>
                     <tr>{{trip_total_collection}}</tr>
+
+                    {% empty%}
                    {% endfor %}
-                   
+                  
+                  
                   </tbody>
                 </table>
               </div>

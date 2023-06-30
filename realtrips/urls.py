@@ -17,7 +17,7 @@ urlpatterns = [
     path('viewtrip/<str:pk>', TripDetailView.as_view(), name='viewtrip'),
     path('report-trip/', RevenueListView.as_view(), name='revenue_report'),
     path('report-expense/', ExpenseReportListView.as_view(), name='report-expense'),
-   
+    # path("tripfilter/", FilterTripView.as_view(model=Trip), name="trip"),
     path('expense/', ExpenseListView.as_view(), name='expense'),
     path('addexpense/', ExpenseAddView.as_view(), name='addexpense'),
     path('editexpense/<str:pk>',EditExpenseView.as_view(), name='edit-expense'),

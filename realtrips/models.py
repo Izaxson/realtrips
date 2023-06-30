@@ -9,6 +9,9 @@ class Profile(models.Model):
     # id_no = models.IntegerField(max_length=8)
     # profile_picture = models.ImageField(upload_to=('images/Profile_pictures'))
     company = models.ForeignKey('Company', on_delete=models.CASCADE, related_name='company')
+    is_inspector=models.BooleanField(default=False)
+    is_manager=models.BooleanField(default=False)
+    is_conductor=models.BooleanField(default=False)
     def __str__(self):
         return f'{self.user}'
     
@@ -26,6 +29,8 @@ class Company(models.Model):
 class Vehicle(models.Model):
     profile = models.OneToOneField(Profile,blank=True, null=True, on_delete=models.PROTECT,related_name='profilevehicle')
     vehicle_reg_no = models.CharField(max_length=150)
+    fleet_no = models.CharField(max_length=150,null=True)
+    
     created = models.DateTimeField(auto_now_add=True)
     company=models.ForeignKey(Company,on_delete=models.CASCADE,related_name='vehicle',blank=True,null=True)
     
@@ -65,6 +70,13 @@ class Trip(models.Model):
             ('Makongeni', 'Makongeni'),
             
      )
+    status = (
+            ('Pending', 'Pending'),
+            ('Approved', 'Approved'),
+            ('Not Approved', 'Not Approved'),
+           
+            
+     )
     Vehicle = models.ForeignKey(Vehicle, on_delete=models.PROTECT)
     odometer_start=models.PositiveIntegerField()
     odometer_close=models.PositiveIntegerField()
@@ -72,11 +84,11 @@ class Trip(models.Model):
     journey_destination=models.CharField(max_length=100, choices=journey_Choices) 
     amount_collected=models.PositiveIntegerField()
     created = models.DateField(auto_now_add=True)
-    # user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='trips')
+    # status =models.CharField(max_length=100, choices=status,default='Pending') 
     profile = models.ForeignKey(Profile, on_delete=models.PROTECT)
     
     class Meta:
-        ordering = ('-created',) 
+        ordering = ('-id',) 
     def __str__(self):
         return f'Trip for {self.Vehicle.vehicle_reg_no}'
     
@@ -89,6 +101,7 @@ class Trip(models.Model):
 
 
 class Expense(models.Model):
+    
     Expense_Choices = (
             ('FUEL-DIESEL', 'Fuel-Diesel'),
             ('BREAKFAST', 'Breakfast'),
@@ -110,18 +123,26 @@ class Expense(models.Model):
             ('Batteries', 'Batteries'),
             ('Break Fluid', 'Break Fluid'),
             ('Others', 'Others'),
-        )   
+        ) 
+    status = (
+            ('Pending', 'Pending'),
+            ('Approved', 'Approved'),
+            ('Not Approved', 'Not Approved'),
+           
+            
+     )  
      
     Vehicle = models.ForeignKey(Vehicle, on_delete=models.PROTECT)
     name = models.CharField(max_length=100, choices=Expense_Choices) 
     amount_incurred=models.PositiveIntegerField()
     created = models.DateTimeField(auto_now_add=True)
+    # status =models.CharField(max_length=100, choices=status) 
     # user = models.ForeignKey(User, on_delete=models.CASCADE,related_name='trips')
     profile = models.ForeignKey(Profile, on_delete=models.PROTECT)
     # user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     
     class Meta:
-        ordering = ('-created',)
+        ordering = ('id',)
 
             
     def __str__(self):
