@@ -5,7 +5,7 @@ from accounts.views import LoginView
 
 
 # from Vehicles import settings
-from .views import   EditTripView, ExpenseAddView,ExpenseReportListView,RevenueListView,EditExpenseView,ExpenseDetailView, TripDetailView, TripAddView, TripListView , ExpenseListView , DashboardView
+from .views import   EditTripView, EditVehicleView, ExpenseAddView,ExpenseReportListView,RevenueListView,EditExpenseView,ExpenseDetailView, TripDetailView, TripAddView, TripListView , ExpenseListView , DashboardView, VehicleAddView, VehicleDetailView, VehicleListView
 from django.conf.urls.static import static
 from django.contrib import admin
 urlpatterns = [
@@ -22,4 +22,8 @@ urlpatterns = [
     path('addexpense/', ExpenseAddView.as_view(), name='addexpense'),
     path('editexpense/<str:pk>',EditExpenseView.as_view(), name='edit-expense'),
     path('viewexpense/<str:pk>',ExpenseDetailView.as_view(), name='viewexpense'),
+    path('vehicle/', VehicleListView.as_view(), name='vehicle'),
+    path('addvehicle/', VehicleAddView.as_view(), name='addvehicle'),
+    path('editvehicle/<str:pk>', EditVehicleView.as_view(), name='edit-vehicle'),
+    path('viewvehicle/<str:pk>', VehicleDetailView.as_view(), name='view-vehicle'),
  ]

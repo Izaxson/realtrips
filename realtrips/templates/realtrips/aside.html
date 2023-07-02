@@ -7,7 +7,7 @@
       </a> 
     </div>
     <ul class="sidebar-menu">
-      <li class="menu-header">Main</li>
+      <li class="menu-header">Real|Trips</li>
       <li class="dropdown">
         <a href="{% url 'dashboard' %}" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
       </li>
@@ -30,6 +30,7 @@
           <li><a class="nav-link" href="calendar.html">This Year</a></li> {% endcomment %}
         </ul>
       </li>
+      
       <li class="dropdown">
         <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="bar-chart"></i><span>Reports</span></a>
         <ul class="dropdown-menu">
@@ -40,11 +41,11 @@
         </ul>
       </li>
       <li class="dropdown">
-        <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="user"></i><span>Vehicle Management</span></a>
+        <a href="{% url 'vehicle' %}" class="menu-toggle nav-link has-dropdown"><i data-feather="truck"></i><span>Vehicle Management</span></a>
         <ul class="dropdown-menu">
-          <li><a class="nav-link" href="email-inbox.html"><i data-feather="user-check"></i>User</a></li>
-          <li><a class="nav-link" href="email-compose.html"><i data-feather="user-plus"></i>Roles</a></li>
-          <li><a class="nav-link" href="email-read.html"> <i data-feather="users"></i>Permissions</a></li>
+          <li><a class="nav-link" href="{% url 'vehicle' %}"><i data-feather="truck"></i>Vehicle </a></li>
+          <li><a class="nav-link" href="#"><i data-feather="user-plus"></i>Roles</a></li>
+          <li><a class="nav-link" href="#"> <i data-feather="users"></i>Permissions</a></li>
         </ul>
       </li>
      

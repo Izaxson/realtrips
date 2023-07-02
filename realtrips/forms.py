@@ -1,6 +1,6 @@
 from django import contrib, forms
 from django.forms import ModelForm
-from .models import  Expense, Trip
+from .models import  Expense, Trip, Vehicle
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Div, Submit, HTML, Button, Row, Field
 from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions
@@ -126,5 +126,54 @@ class ExpenseEditForm(ExpenseAddForm):
 
 
 
+class VehicleAddForm(forms.ModelForm):
+    class Meta:
+        model = Vehicle
+        fields = ['vehicle_reg_no', 'company', 'fleet_no']
+        labels = {
+            'Reg. No': 'Reg.No',
+            'company': 'Company',
+            'Fleet No.': 'Fleet No.',
+            
+            
+           
+            
+        }
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+        self.helper.add_input(Submit('submit', 'Send'))
+        self.helper.layout = Layout(
+            'vehicle_reg_no',
+            'company',
+            'fleet_no',
+          
+        )
 
+class VehicleEditForm(VehicleAddForm):
+    class Meta:
+        model = Vehicle
+        fields = ['vehicle_reg_no', 'company', 'fleet_no']
+        labels = {
+            'Vehicle Reg .No': 'Vehicle Reg .No',
+            'Company': 'Company',
+            'Fleet No': 'Fleet No.',
+            
+         
+            
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+        self.helper.add_input(Submit('submit', 'Send'))
+        self.helper.layout = Layout(
+            'Vehicle',
+            'name',
+            'amount_incurred',
+         
+            
+        )        

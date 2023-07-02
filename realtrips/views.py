@@ -3,13 +3,11 @@ from urllib import request
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
-# from django.contrib.auth import User
-# from requests import request
-from realtrips.models import Expense, Trip,Driver
+from realtrips.models import Expense, Trip,Driver, Vehicle
 from django.views.generic import ListView  ,DetailView , CreateView ,FormView ,UpdateView
 from django.db.models import Sum
 from django.contrib import messages
-from .forms import  ExpenseEditForm, TripAddForm ,ExpenseAddForm ,EditTripForm
+from .forms import  ExpenseEditForm, TripAddForm ,ExpenseAddForm ,EditTripForm, VehicleAddForm
 from django.contrib.auth.decorators import login_required, permission_required
 from .filters import TripFilter,ExpenseFilter
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -48,6 +46,29 @@ class ExpenseListView(LoginRequiredMixin, FilterView):
         context['filter'] = self.filterset
         return context
 
+class VehicleListView(LoginRequiredMixin, FilterView):
+    model = Vehicle
+    template_name = 'realtrips/vehicle.html'
+    filterset_class = ExpenseFilter
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        # queryset = queryset.filter(profile=self.request.user.profile)
+
+        search_query = self.request.GET.get('q')
+        if search_query:
+            queryset = queryset.filter(
+                Q(name=search_query) ,
+                Q(Vehicle__icontains=search_query)
+            )
+
+        self.filterset = self.filterset_class(self.request.GET, queryset=queryset)
+        return self.filterset.qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter'] = self.filterset
+        return context   
     
 class TripListView(LoginRequiredMixin, FilterView):
     model = Trip
@@ -144,22 +165,20 @@ class TripAddView(LoginRequiredMixin, FormView):
         # return super().form_valid(form)
         return context
 
-# class TripAddView(FormView):
-#     template_name = 'realtrips/addtrip.html'
-#     form_class = TripAddForm  
-#     success_url = reverse_lazy('trips')
+class EditVehicleView(LoginRequiredMixin,UpdateView):
+    template_name = 'realtrips/update_vehicle.html'
+    form_class = EditTripForm
+    success_url = reverse_lazy('vehicle')
 
-#     def form_valid(self, form):
-#         profile = self.request.user.profile
-#         form.save()
-#         messages.success(self.request, 'Your Trip has been added. Thank you!')
-#         return super().form_valid(form)
+    def form_valid(self, form):
+        form.save()
 
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['forms'] = self.form_class()
-#         return context
+        messages.success(self.request, 'Your Vehicle has been updated. Thank you!')
+        return super().form_valid(form)
 
+    def get_queryset(self):
+        # Return a queryset of all Trip objects
+        return Trip.objects.all()
 class EditTripView(LoginRequiredMixin,UpdateView):
     template_name = 'realtrips/update_trip.html'
     form_class = EditTripForm
@@ -174,7 +193,20 @@ class EditTripView(LoginRequiredMixin,UpdateView):
     def get_queryset(self):
         # Return a queryset of all Trip objects
         return Trip.objects.all()
+class VehicleDetailView(LoginRequiredMixin, DetailView):
+    template_name = 'realtrips/viewvehicle.html'
+    success_url = reverse_lazy('viewvehicle')
 
+    def get_queryset(self):
+        # Return a queryset of all Trip objects
+        return Vehicle.objects.all()
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # driver = Driver.objects.get(vehicle__vehicle_reg_no='vehicle_reg_no')
+        # driver_name = driver.name
+        # context['driver'] = driver
+        return context
+    
 class TripDetailView(LoginRequiredMixin, DetailView):
     template_name = 'realtrips/viewtrip.html'
     success_url = reverse_lazy('viewtrip')
@@ -294,22 +326,64 @@ class ExpenseAddView(LoginRequiredMixin, FormView):
         return context
 
 
-# class ExpenseAddView(FormView):
-#     template_name = 'realtrips/addexpense.html'
-#     form_class = ExpenseAddForm
-#     success_url = reverse_lazy('expense')
+class VehicleAddView(LoginRequiredMixin, FormView):
+    template_name = 'realtrips/addvehicle.html'
+    form_class = VehicleAddForm
+    success_url = reverse_lazy('vehicle')
+
+    def form_valid(self, form):
+        profile = self.request.user.profile  # Assuming you have a 'Profile' model related to the user
+        vehicle = form.save(commit=False)
+        vehicle.profile = profile
+        vehicle.save()
+
+        # messages.success(self.request, 'Your Expense has been added. Thank you!')
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['forms'] = self.form_class()
+        messages.success(self.request, 'Vehicle  added successfully.')
+        return context
+    
+# class EditVehicleView(LoginRequiredMixin, UpdateView):
+#     form_class = VehicleEditForm
+#     template_name = 'realtrips/update_vehicle.html'
+#     success_url = reverse_lazy('vehicle')
 
 #     def form_valid(self, form):
-#         profile=self.request.user
 #         form.save()
-
-#         messages.success(self.request, 'Your Expense  has been added. Thank you!')
+#         messages.success(self.request, ' Vehicle details updated. Thank you!')
 #         return super().form_valid(form)
+
+#     def get_queryset(self):
+#         # Return a queryset of all Expense objects
+#         return Expense.objects.all()
+
+# class ExpenseDetailView(LoginRequiredMixin, DetailView):
+#     template_name = 'realtrips/viewexpense.html'
+#     success_url = reverse_lazy('trips')
+
+#     # def form_valid(self, form):
+#     #     form.save()
+
+#     def get_queryset(self):
+#         # Return a queryset of all Trip objects
+#         return Expense.objects.all()
+#         # return Expense.objects.filter(pk=expenser.id)
 
 #     def get_context_data(self, **kwargs):
 #         context = super().get_context_data(**kwargs)
-#         context['forms'] = self.form_class()
-#         return context
+
+#         # Calculate total amount incurred
+#         total_expense_amount = Expense.objects.aggregate(Sum('amount_incurred'))['amount_incurred__sum']
+#         context['totalexpense_amount'] = total_expense_amount
+
+#         # total_trip_amount = Trip.objects.aggregate(Sum('amount_collected'))['amount_collected__sum']
+#         # context['totaltrip_amount'] = total_trip_amount
+
+
+#         return context    
 
 class EditExpenseView(LoginRequiredMixin, UpdateView):
     form_class = ExpenseEditForm
