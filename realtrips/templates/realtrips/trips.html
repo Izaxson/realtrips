@@ -24,6 +24,13 @@
                   {{ filter.form|crispy}}
                   <button type="submit" name='q' class= "btn btn btn-success">Search </button>
               </form>
+
+              {% if request.GET.q %}
+              <div>
+                <p>Input: {{ request.GET.q }}</p>
+              </div>
+              {% endif %}
+            </div>
             </div>  
            
             

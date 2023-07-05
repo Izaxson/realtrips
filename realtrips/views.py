@@ -7,7 +7,7 @@ from realtrips.models import Expense, Trip,Driver, Vehicle
 from django.views.generic import ListView  ,DetailView , CreateView ,FormView ,UpdateView
 from django.db.models import Sum
 from django.contrib import messages
-from .forms import  ExpenseEditForm, TripAddForm ,ExpenseAddForm ,EditTripForm, VehicleAddForm
+from .forms import  ExpenseEditForm, TripAddForm ,ExpenseAddForm ,EditTripForm, VehicleAddForm ,VehicleEditForm
 from django.contrib.auth.decorators import login_required, permission_required
 from .filters import TripFilter,ExpenseFilter
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -16,10 +16,7 @@ from django_filters.views import FilterView
 from django.db.models import Q
 
 
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView
 
-from django_filters.views import FilterView
 
 
 class ExpenseListView(LoginRequiredMixin, FilterView):
@@ -241,6 +238,7 @@ class RevenueListView(LoginRequiredMixin,ListView):
         trips = context['object_list']
         for trip in trips:
             trip.mileage = trip.odometer_close - trip.odometer_start
+            context['trip.mileage']
 
 
         return context
@@ -290,9 +288,9 @@ class ExpenseReportListView(LoginRequiredMixin, ListView):
         return context
 
     def get_queryset(self):
-        # Return a queryset of all Trip objects
+        # Return a queryset of all Trip objects of current  logged in user
          return Expense.objects.filter(request.user)
-    # paginate_by=10
+         paginate_by=10
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
