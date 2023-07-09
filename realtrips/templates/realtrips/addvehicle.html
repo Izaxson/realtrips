@@ -1,0 +1,34 @@
+{% extends "realtrips/base.html" %}
+{% load static%}
+{% load crispy_forms_tags %}
+
+{% comment %} {%load crispy_forms_tags %}  {% endcomment %}
+{%block content%}
+  
+<div class="main-content">
+    <section class="section">
+      <div class="section-body">
+        <div class="row">
+        
+          <div class="col-6 col-md-6 col-lg-6">
+           
+              <form action="{% url 'addexpense' %}" method="POST">
+                {% csrf_token %}
+                <div class="card-header">
+                  <h4>Add Vehicle </h4>
+                </div>
+                {{form|crispy}} 
+            
+                <div class="card-footer text-right">
+                  <button class="btn btn-success">Submit</button>
+                </div>
+              </form>
+         
+            
+          </div>
+        </div>
+      </div>
+    </section>
+   
+  </div>
+{%endblock content%}  
