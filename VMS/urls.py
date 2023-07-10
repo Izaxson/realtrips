@@ -11,3 +11,4 @@ urlpatterns = [
     path('', include('realtrips.urls')),
     path('', include('accounts.urls')),
 ]
+urlpatterns+=staticfiles_urlpatterns()
