@@ -121,8 +121,8 @@ class DashboardView(LoginRequiredMixin,ListView):
 
          # Calculate the Net revenue
         # context['net_revenue'] = Trip.objects.aggregate(net_revenue=Sum('amount_collected__sum') - Sum('amount_incurred__sum'))
-        net_revenue = total_amount_collected - total_expense_incurred
-        context['net_revenue'] = net_revenue
+        # net_revenue = total_amount_collected - total_expense_incurred
+        # context['net_revenue'] = net_revenue
 
         # Calculate trip count
         context['trip_count'] = Trip.objects.all().count()
