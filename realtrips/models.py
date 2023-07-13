@@ -8,7 +8,11 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     # id_no = models.IntegerField(max_length=8)
     # profile_picture = models.ImageField(upload_to=('images/Profile_pictures'))
+<<<<<<< HEAD
     company = models.ForeignKey('Company', on_delete=models.CASCADE, related_name='company', null=True,blank=True)
+=======
+    company = models.ForeignKey('Company', on_delete=models.CASCADE, related_name='company')
+>>>>>>> 016e58452a172b5d6ef68c4ccac19597a44f6828
     is_inspector=models.BooleanField(default=False)
     is_manager=models.BooleanField(default=False)
     is_conductor=models.BooleanField(default=False)
@@ -16,7 +20,11 @@ class Profile(models.Model):
         return f'{self.user}'
     
 class Company(models.Model):
+<<<<<<< HEAD
     profile = models.OneToOneField(Profile, on_delete=models.CASCADE, related_name='profile',null=True, blank=True)
+=======
+    profile = models.OneToOneField(Profile, on_delete=models.CASCADE, related_name='profile',null=True)
+>>>>>>> 016e58452a172b5d6ef68c4ccac19597a44f6828
     name = models.CharField(max_length=150)
     address = models.CharField(max_length=150)
     location = models.CharField(max_length=150)
@@ -70,7 +78,17 @@ class Trip(models.Model):
             ('Makongeni', 'Makongeni'),
             
      )
+<<<<<<< HEAD
  
+=======
+    status = (
+            ('Pending', 'Pending'),
+            ('Approved', 'Approved'),
+            ('Not Approved', 'Not Approved'),
+           
+            
+     )
+>>>>>>> 016e58452a172b5d6ef68c4ccac19597a44f6828
     Vehicle = models.ForeignKey(Vehicle, on_delete=models.PROTECT)
     odometer_start=models.PositiveIntegerField()
     odometer_close=models.PositiveIntegerField()
@@ -78,7 +96,11 @@ class Trip(models.Model):
     journey_destination=models.CharField(max_length=100, choices=journey_Choices) 
     amount_collected=models.PositiveIntegerField()
     created = models.DateField(auto_now_add=True)
+<<<<<<< HEAD
     
+=======
+    # status =models.CharField(max_length=100, choices=status,default='Pending') 
+>>>>>>> 016e58452a172b5d6ef68c4ccac19597a44f6828
     profile = models.ForeignKey(Profile, on_delete=models.PROTECT)
     
     class Meta:
@@ -118,13 +140,27 @@ class Expense(models.Model):
             ('Break Fluid', 'Break Fluid'),
             ('Others', 'Others'),
         ) 
+<<<<<<< HEAD
     
+=======
+    status = (
+            ('Pending', 'Pending'),
+            ('Approved', 'Approved'),
+            ('Not Approved', 'Not Approved'),
+           
+            
+     )  
+>>>>>>> 016e58452a172b5d6ef68c4ccac19597a44f6828
      
     Vehicle = models.ForeignKey(Vehicle, on_delete=models.PROTECT)
     name = models.CharField(max_length=100, choices=Expense_Choices) 
     amount_incurred=models.PositiveIntegerField()
     created = models.DateTimeField(auto_now_add=True)
+<<<<<<< HEAD
    
+=======
+    # status =models.CharField(max_length=100, choices=status) 
+>>>>>>> 016e58452a172b5d6ef68c4ccac19597a44f6828
     # user = models.ForeignKey(User, on_delete=models.CASCADE,related_name='trips')
     profile = models.ForeignKey(Profile, on_delete=models.PROTECT)
     # user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)

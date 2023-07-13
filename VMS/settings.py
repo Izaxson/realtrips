@@ -13,8 +13,11 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 
+<<<<<<< HEAD
 import dj_database_url
 
+=======
+>>>>>>> 016e58452a172b5d6ef68c4ccac19597a44f6828
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -34,7 +37,11 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+<<<<<<< HEAD
     'jazzmin',
+=======
+     'jazzmin',
+>>>>>>> 016e58452a172b5d6ef68c4ccac19597a44f6828
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -84,6 +91,7 @@ WSGI_APPLICATION = 'VMS.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+<<<<<<< HEAD
 # if not DEBUG:
 DATABASES = {'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))}
 # # else:
@@ -93,6 +101,15 @@ DATABASES = {'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))}
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+=======
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+>>>>>>> 016e58452a172b5d6ef68c4ccac19597a44f6828
 
 
 # Password validation
@@ -156,16 +173,27 @@ JAZZMIN_SETTINGS = {
     
 
     # Logo to use for your site, must be present in static files, used for login form logo (defaults to site_logo)
+<<<<<<< HEAD
     "login_logo": "assets/img/mylogo.png",
 
     # Logo to use for login form in dark themes (defaults to login_logo)
     "login_logo_dark":"assets/img/Realtripslogo.jpg",
+=======
+    "login_logo": None,
+
+    # Logo to use for login form in dark themes (defaults to login_logo)
+    "login_logo_dark": None,
+>>>>>>> 016e58452a172b5d6ef68c4ccac19597a44f6828
 
     # CSS classes that are applied to the logo above
     "site_logo_classes": "",
 
     # Relative path to a favicon for your site, will default to site_logo if absent (ideally 32x32 px)
+<<<<<<< HEAD
     "site_icon": "assets/img/Realtripslogo.jpg",
+=======
+    "site_icon": None,
+>>>>>>> 016e58452a172b5d6ef68c4ccac19597a44f6828
     
 
     # Welcome text on the login screen
@@ -179,7 +207,11 @@ JAZZMIN_SETTINGS = {
     "search_model": ["auth.User", "auth.Group"],
 
     # Field name on user model that contains avatar ImageField/URLField/Charfield or a callable that receives the user
+<<<<<<< HEAD
     "user_avatar": "assets/img/Realtripslogo.jpg",
+=======
+    "user_avatar": None,
+>>>>>>> 016e58452a172b5d6ef68c4ccac19597a44f6828
 
     ############
     # Top Menu #
@@ -277,7 +309,11 @@ JAZZMIN_SETTINGS = {
     # Whether to link font from fonts.googleapis.com (use custom_css to supply font otherwise)
     "use_google_fonts_cdn": True,
     # Whether to show the UI customizer on the sidebar
+<<<<<<< HEAD
     "show_ui_builder": False,
+=======
+    "show_ui_builder": True,
+>>>>>>> 016e58452a172b5d6ef68c4ccac19597a44f6828
 
     ###############
     # Change view #
